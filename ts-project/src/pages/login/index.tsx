@@ -1,12 +1,9 @@
-import { FC, useCallback, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { FC } from "react";
 import { Button, Checkbox, Form, Input, message } from "antd";
 import { MailTwoTone, LockTwoTone } from "@ant-design/icons";
-import * as S from "./style"; 
+import * as S from "./style";
 
 const LoginPage: FC = () => {
-  const navigate = useNavigate();
-
   return (
     <S.LoginPageContainer>
       <S.LoginFormContainer title="project">
