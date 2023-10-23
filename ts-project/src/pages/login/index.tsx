@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Button, Checkbox, Form, Input, message } from "antd";
+import { Button, Checkbox, Form, Input } from "antd";
 import { MailTwoTone, LockTwoTone } from "@ant-design/icons";
 import * as S from "./style";
 

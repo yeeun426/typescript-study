@@ -1,8 +1,13 @@
 import styled from "styled-components";
-import { Card } from "antd";
 
-const calendarStyle = styled.div`
-  height: 600px;
+const CalendarStyle = styled.div`
+  width: 60%;
+
+  #calendar {
+    height: 600px;
+    width: 100%;
+  }
 `;
 
-export { calendarStyle };
+const TodoStyle = styled.div``;
+export { CalendarStyle, TodoStyle };

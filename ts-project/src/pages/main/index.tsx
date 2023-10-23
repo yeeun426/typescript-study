@@ -1,11 +1,14 @@
 import { FC } from "react";
-import CalendarComponent from "@component/main/calendar";
+import CalendarComponent from "@component/main/CalendarContent";
+import Todo from "@pages/Todo/index";
+import MainTemplate from "@pages/main/style";
 
 const Main: FC = () => {
   return (
-    <div>
+    <MainTemplate>
       <CalendarComponent />
-    </div>
+      <Todo />
+    </MainTemplate>
   );
 };
 
