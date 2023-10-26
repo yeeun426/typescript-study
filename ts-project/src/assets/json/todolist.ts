@@ -2,7 +2,7 @@ export const initialTodos = [
   {
     id: 1,
     text: "typescript 공부",
-    endtime: "19:00",
+    endTime: "19:00",
     category: "works",
     done: false,
     detail: [
@@ -13,7 +13,7 @@ export const initialTodos = [
   {
     id: 2,
     text: "우테코",
-    endtime: "12:30",
+    endTime: "12:30",
     category: "works",
     done: true,
     detail: [
@@ -24,16 +24,18 @@ export const initialTodos = [
   {
     id: 3,
     text: "redux-saga 블로그 작성",
-    endtime: "19:00",
+    endTime: "19:00",
     category: "works",
     done: false,
+    detail: [],
   },
   {
     id: 4,
     text: "집에 가기",
-    endtime: "21:00",
+    endTime: "21:00",
     category: "personal",
     done: false,
+    detail: [],
   },
   {
     id: 5,
@@ -41,5 +43,6 @@ export const initialTodos = [
     endtime: "",
     category: "personal",
     done: false,
+    detail: [],
   },
 ];

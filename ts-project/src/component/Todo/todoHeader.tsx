@@ -1,5 +1,5 @@
 import React from "react";
-import { TodoHeaderStyled } from "@pages/Todo/style";
+import { TodoHeaderStyled } from "@component/Todo/style";
 
 function TodoHeader() {
   const today = new Date();
