@@ -24,7 +24,7 @@ const TodoHeaderStyled = styled.div`
 `;
 
 const TodoListStyled = styled.div`
-  padding: 20px 32px;
+  padding: 20px 25px;
   padding-bottom: 48px;
   overflow-y: auto;
   display: flex;
@@ -75,9 +75,25 @@ const TodoDetailItem = styled.div`
   }
 `;
 
-const TodoInputStyle = styled.div``;
+const TodoInputStyle = styled.div`
+  padding: 0 20px 30px;
+  button {
+    background: none;
+    border: none;
+  }
+`;
 
-const InsertForm = styled.div``;
+const InsertForm = styled.div`
+  input {
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+    width: 100%;
+    outline: none;
+    font-size: 18px;
+    box-sizing: border-box;
+  }
+`;
 
 export {
   TodoHeaderStyled,

@@ -1,7 +1,8 @@
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useRef, useState } from "react";
 import { TodoInputStyle, InsertForm } from "@component/Todo/style";
 import { initialTodos } from "@assets/json/todolist";
 import { Todos } from "@interfaces/Todos";
+import { MdAddCircle } from "react-icons/md";
 
 interface TodoInputProps {
   todoList: Todos[];
@@ -12,7 +13,6 @@ const TodoInput: FC<TodoInputProps> = ({ todoList, setTodoList }) => {
   const [open, setOpen] = useState(true);
   const [textValue, setTextValue] = useState("");
   const nextId = useRef(initialTodos.length + 1);
-  //   const [todoList, setTodoList] = useState<Todos[]>(initialTodos);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTextValue(e.target.value);
@@ -32,29 +32,29 @@ const TodoInput: FC<TodoInputProps> = ({ todoList, setTodoList }) => {
       setTodoList([...todoList, newList]);
       setTextValue("");
       nextId.current++;
-      //   setOpen(false);
+      setOpen(false);
     }
   };
 
+  // const onToggle = (e: React.ChangeEvent<HTMLInputElement>) => {};
+
   return (
-    <>
+    <TodoInputStyle>
       {open && (
-        <form>
-          <InsertForm>
-            <input
-              type="text"
-              onChange={onChange}
-              value={textValue}
-              placeholder="입력"
-              onKeyDown={onSubmit}
-            />
-          </InsertForm>
-        </form>
+        <InsertForm>
+          <input
+            type="text"
+            onChange={onChange}
+            value={textValue}
+            placeholder="할 일을 입력 후, Enter를 누르세요"
+            onKeyDown={onSubmit}
+          />
+        </InsertForm>
       )}
-      {/* <button onClick={onToggle} open={open}>
-        <MdAdd />
-      </button> */}
-    </>
+      <button>
+        <MdAddCircle />
+      </button>
+    </TodoInputStyle>
   );
 };
 
