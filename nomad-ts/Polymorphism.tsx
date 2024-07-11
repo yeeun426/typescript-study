@@ -41,6 +41,9 @@ interface LocalStorageAPI<T> {
 
 abstract class LocalStorageA<T> {
     protected storage: LocalStorageAPI<T> = {};
+    constructor() {
+        this.storage = {};
+    }
 
     abstract setItem(key: string, value: T): void;
     abstract getItem(key: string): T | undefined;
@@ -49,19 +52,23 @@ abstract class LocalStorageA<T> {
 }
 
 class LocalStorageB extends LocalStorageA<string> {
-    setItem(key:string, value: string) {
+    constructor() {
+        super();
+    }
+
+    public setItem(key:string, value: string) {
         this.storage[key] = value;
     }
 
-    getItem(key:string):string {
+    public getItem(key:string):string {
         return this.storage[key];
     }
 
-    clearItem(key:string) {
+    public clearItem(key:string) {
         delete this.storage[key];
     }
 
-    clear() {
+    public clear() {
         this.storage = {};
     }
 }
@@ -73,41 +80,66 @@ myLocalStorage.clearItem("key")
 myLocalStorage.clear()
 
 // Geolocation API -> 오버로딩
-interface GeolocationAPI {
-    successFn: (position: GeolocationPosition) => void;
-    errorFn?: (error: GeolocationPositionError) => void;
-    optionsObj?:Options;
-}
+type GeolocationCoords = {
+    latitude: number;
+    longitude: number;
+    altitude: number;
+    accuracy: number;
+    altitudeAccuracy: number;
+    heading: number;
+    speed: number;
+};
 
-interface Options {
-    enableHighAccuracy: boolean;
-    timeout: number;
+type Position = {
+    coords: GeolocationCoords;
+};
+
+type GeoError = {
+    code: number;
+    message: string;
+};
+
+type SuccessFunction = (position: Position) => void;
+type ErrorFunction = (error: GeoError) => void;
+type GeoOptions = {
     maximumAge: number;
-
+    timeout: number;
+    enableHighAccuracy: boolean;
+};
+  
+type GetCurrentPosition = {
+    (success: SuccessFunction): void;
+    (success: SuccessFunction, error: ErrorFunction): void;
+    (success: SuccessFunction, error: ErrorFunction, options: GeoOptions): void;
+};
+  
+type WatchCurrentPosition = {
+    (success: SuccessFunction): number;
+    (success: SuccessFunction, error: ErrorFunction): number;
+    (success: SuccessFunction, error: ErrorFunction, options: GeoOptions): number;
+};
+  
+interface GeolocationAPI {
+    getCurrentPosition: GetCurrentPosition;
+    watchPosition: WatchCurrentPosition;
+    clearWatch: (id: number) => void;
 }
-
-class GGeolocation {
-    getCurrentPosition(geolocationApi: GeolocationAPI): void {
-        const { successFn, errorFn, optionsObj } = geolocationApi;
-
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(successFn, errorFn, optionsObj);
-        }
-    }
-
-    watchPosition(geolocationApi: GeolocationAPI): number {
-        const { successFn, errorFn, optionsObj } = geolocationApi;
-
-        if (navigator.geolocation) {
-            return navigator.geolocation.watchPosition(successFn, errorFn, optionsObj);
-        } else {
-            return -1;
-        }
-    }
-
-    clearWatch(id: number): void {
-        if (navigator.geolocation) {
-            navigator.geolocation.clearWatch(id);
-        } 
-    }
-}
+  
+class Geolocator implements GeolocationAPI {
+    getCurrentPosition: GetCurrentPosition = (
+        success: SuccessFunction,
+        error?: ErrorFunction,
+        options?: GeoOptions
+    ) => {
+        return; // Implementation goes here :)
+    };
+    watchPosition: WatchCurrentPosition = (
+        success: SuccessFunction,
+        error?: ErrorFunction,
+        options?: GeoOptions
+    ) => {
+        return 1; // Implementation goes here :)
+    };
+    clearWatch = (id: number) => {};
+  }
+  
